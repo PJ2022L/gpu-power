@@ -15,6 +15,14 @@ Examples:
 - `01-plan.md`: plan for `01-exp`.
 - `02-plan.md`: plan for `02-exp`, written after analyzing `01-exp`.
 
+The numbering relationship is fixed:
+
+```text
+01-plan.md -> 01-exp -> 02-plan.md -> 02-exp -> 03-plan.md
+```
+
+In other words, `xx-plan.md` is the plan that produces `xx-exp`. After `xx-exp` is complete and analyzed in `QUALITY.md`, Main Agent writes `<xx+1>-plan.md`.
+
 ## When To Write A Plan
 
 After each completed experiment (`xx-exp` in `QUALITY.md`), Main Agent analyzes:
@@ -25,7 +33,7 @@ After each completed experiment (`xx-exp` in `QUALITY.md`), Main Agent analyzes:
 - whether calibration/modeling should change,
 - what the next experiment should test.
 
-Then Main Agent writes the next `xx-plan.md`.
+Then Main Agent writes the next `<xx+1>-plan.md`.
 
 ## Plan Template
 

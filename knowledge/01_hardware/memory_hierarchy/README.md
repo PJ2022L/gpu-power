@@ -21,4 +21,4 @@ For Wattchmen-style modeling, a memory SASS opcode is not enough. The same load/
 - H800 L2 hit/miss benchmarks.
 - HBM bandwidth and power microbenchmarks.
 - Cache metrics from Nsight Compute and how they map to `LDG`, `STG`, `LDS`, `STS`, `LDSM`, `LDGSTS`, and TMA.
-- Operator-specific memory behavior for GEMM, FlashMLA, FlashAttention v2/v3/v4.
+- Operator-specific memory behavior for GEMM, FlashMLA, and FlashAttention v3.

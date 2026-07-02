@@ -4,6 +4,11 @@ modeling:
     constant_energy: true
     static_energy: true
     dynamic_energy: true
+    v1_boundary_doc: docs/design-spec/modeling.md
+    constant_power_source: idle_baseline
+    static_power_source: full_sm_active_noop_minus_idle
+    static_activity_scaling: none
+    dynamic_rhs: measured_energy_minus_const_static
   solver:
     type: non_negative_least_squares
     enforce_non_negative: true
@@ -17,6 +22,7 @@ modeling:
     report_unknown_fraction: true
 
 inputs:
+  baseline_power_root: experiments/raw/baseline_power
   microbench_processed_root: experiments/processed/microbench
   operator_sass_root: experiments/processed/operator_sass
   operator_power_root: experiments/raw/operator_power

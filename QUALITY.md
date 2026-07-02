@@ -10,6 +10,14 @@ micro-benchmark -> calibration/model fitting -> operator test
 
 Each experiment must be numbered as `xx-exp`, for example `01-exp`, `02-exp`, `03-exp`.
 
+Plan and experiment numbering is one-to-one:
+
+```text
+01-plan.md -> 01-exp -> 02-plan.md
+```
+
+`xx-plan.md` is the plan that produced `xx-exp`. After analyzing `xx-exp`, Main Agent writes `<xx+1>-plan.md`.
+
 ## Current Status
 
 | Field | Value |
@@ -42,6 +50,8 @@ Copy this section for every completed experiment.
 | Driver/CUDA/NCU versions | TBD |
 | Configs | TBD |
 | Reports | TBD |
+| Plan that produced this experiment | `docs/exec-plans/xx-plan.md` |
+| Next plan | `docs/exec-plans/<xx+1>-plan.md` |
 
 #### 1. Micro-benchmarks
 
@@ -104,7 +114,9 @@ Use this table for quick ablation or component-removal decisions.
 After analyzing a completed `xx-exp`, Main Agent must write the next plan to:
 
 ```text
-docs/exec-plans/<next>-plan.md
+docs/exec-plans/<xx+1>-plan.md
 ```
+
+For example, `01-plan.md` produces `01-exp`; after `01-exp` is analyzed, Main Agent writes `02-plan.md`.
 
 The plan should explain whether the next step is adding microbenchmarks, changing calibration/modeling, collecting more operator profiles, or requesting human intervention.

@@ -21,11 +21,11 @@ Target validation error: about 15% or lower against measured H800 operator power
 | Phase | Owner | Goal | Gate |
 | --- | --- | --- | --- |
 | 0 | Main Agent | Lock Wattchmen modeling interpretation. | Modeling checklist complete. |
-| 1 | Operator SASS Agent | Profile target operators and identify dominant SASS classes. | Kernel list, SASS top-k, memory behavior, missing class list. |
+| 1 | Operator SASS Agent | Profile target operators and identify dominant SASS classes; no validation power ground truth. | Kernel list, SASS top-k, memory behavior, missing class list. |
 | 2 | Microbench Agent | Build and run microbenchmarks for target SASS classes. | Power traces, SASS counts, cache metrics for each benchmark. |
-| 3 | Modeling Agent | Fit const/static/dynamic and instruction-class energy table. | Non-negative solution, residual report, coverage report. |
-| 4 | Validation Agent | Predict operator power and compare with measured power. | Error table for GEMM, FlashMLA, FlashAttention v3. |
-| 5 | Main Agent | Iterate if error is above 15%, update quality history, and write the next execution plan. | `QUALITY.md` update, `docs/exec-plans/<next>-plan.md`, or human modeling intervention. |
+| 3 | Modeling Agent | Collect idle/active-no-op baselines, then fit const/static/dynamic and instruction-class energy table. | Baseline IDs, non-negative solution, residual report, coverage report. |
+| 4 | Validation Agent | Collect non-profiled operator power ground truth, predict operator power, and compare. | Repeatable ground truth traces, prediction report, and error table for GEMM, FlashMLA, FlashAttention v3. |
+| 5 | Main Agent | Iterate if error is above 15%, update quality history, and write the next execution plan. | `QUALITY.md` update, `docs/exec-plans/<xx+1>-plan.md`, or human modeling intervention. |
 
 ## Progression Rule
 
@@ -45,4 +45,4 @@ If Phase 4 error exceeds 15%:
 
 ## Next-Plan Rule
 
-After analyzing `xx-exp`, Main Agent writes the next experiment plan to `docs/exec-plans/<next>-plan.md`. The plan must explain whether the next experiment should add microbenchmarks, change calibration/modeling, collect more operator profiles, or stop for human review.
+`xx-plan.md` is the plan that produces `xx-exp`. After analyzing `xx-exp`, Main Agent writes the next experiment plan to `docs/exec-plans/<xx+1>-plan.md`. The plan must explain whether the next experiment should add microbenchmarks, change calibration/modeling, collect more operator profiles, or stop for human review.

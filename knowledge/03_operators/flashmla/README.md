@@ -11,7 +11,7 @@ FlashMLA is one of the target operator families for H800 performance and power p
 - Dtypes for Q/K/V and accumulation.
 - Dominant SASS classes: tensor instructions, global loads, shared-memory staging, async copy/TMA if used, barriers, reductions.
 - Memory behavior: HBM traffic, L2 reuse, cache hit rates, shared-memory pressure.
-- Validation target: predicted power within 10% of measured FlashMLA power.
+- Validation target: predicted power within 15% of measured FlashMLA power.
 
 ## Initial Questions
 

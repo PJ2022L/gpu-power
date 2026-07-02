@@ -28,6 +28,8 @@ The current repository provides:
 - script placeholders,
 - output directory conventions.
 
+The minimal power sampler is `src/power/nvml_sampler.py`. It uses the H800 Docker container's default `python` and requires the `pynvml` Python binding from `nvidia-ml-py`. Minimal Python dependencies are listed in `requirements-h800.txt`.
+
 ## Harness Philosophy
 
 Harness is not a directory in this project. It is the experiment management method:
@@ -60,11 +62,15 @@ scripts/01_profile_operators.sh
 scripts/02_plan_microbenchmarks.sh
 scripts/03_run_microbenchmarks.sh
 scripts/04_fit_model.sh
-scripts/05_predict_operators.sh
-scripts/06_validate_error.sh
+scripts/05_collect_operator_power.sh
+scripts/06_predict_operators.sh
+scripts/07_validate_error.sh
+scripts/collect_baselines.sh
 ```
 
 Each script is intentionally conservative: it prints what it would do, writes a log, and points to the expected next artifact.
+
+`collect_baselines.sh` is a support script used before Phase 3 fitting to collect idle and active-no-op power baselines for `P_const` and `P_static`; it is not a separate numbered phase.
 
 ## Quality Tracking
 
@@ -76,7 +82,7 @@ micro-benchmark -> calibration/model fitting -> operator test
 
 Each completed loop gets an ID such as `01-exp`. The Main Agent updates the ledger with microbenchmarks, model adjustments, problems, next guidance, and current error.
 
-After analyzing `xx-exp`, Main Agent writes the next plan as `docs/exec-plans/<next>-plan.md`.
+Plan numbering is fixed: `01-plan.md -> 01-exp -> 02-plan.md`. `xx-plan.md` is the plan that produces `xx-exp`; after analyzing `xx-exp`, Main Agent writes `docs/exec-plans/<xx+1>-plan.md`.
 
 ## Output Layout
 

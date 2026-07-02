@@ -12,7 +12,7 @@ logging:
   require_gpu_metadata: true
 
 environment:
-  python_env_command: "conda activate vla"
+  python: python
   required_tools:
     - nvidia-smi
     - nvcc

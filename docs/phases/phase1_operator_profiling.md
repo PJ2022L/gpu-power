@@ -4,6 +4,10 @@
 
 Run GEMM, FlashMLA, and FlashAttention v3 on H800 and collect their actual kernel and SASS profiles.
 
+Phase 1 is profile-only. It collects Nsight Systems/Nsight Compute artifacts, SASS counts, and memory/cache behavior. It must not produce the operator measured-power ground truth used for validation.
+
+If exploratory power samples are captured during Phase 1 for debugging, label them `exploratory` and do not use them in Phase 4 error calculation.
+
 ## Owner
 
 Operator SASS Agent.
@@ -35,6 +39,7 @@ scripts/01_profile_operators.sh configs/operators/flashattention_v3.yaml
 - SASS top-k exists for each kernel.
 - Memory/cache behavior is summarized.
 - Missing SASS classes are listed for Phase 2.
+- Report states that Phase 1 did not generate validation power ground truth.
 
 ## Failure Handling
 

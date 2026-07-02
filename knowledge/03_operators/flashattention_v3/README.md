@@ -12,7 +12,7 @@ FlashAttention v3 is a target attention operator family, likely more Hopper-orie
 - Barrier and pipeline structure.
 - Sequence/head-dimension shape set.
 - Dominant SASS classes and missing microbenchmarks.
-- Validation target: predicted power within 10% of measured FlashAttention v3 power.
+- Validation target: predicted power within 15% of measured FlashAttention v3 power.
 
 ## Initial Questions
 

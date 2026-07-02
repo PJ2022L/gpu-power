@@ -14,4 +14,5 @@ Do not store per-run results here. Per-run results belong in `experiments/` and 
 
 ## Current Specs
 
+- `modeling.md`: const/static/dynamic model boundary and v1 H800 assumptions.
 - `power_measurement_environment.md`: required environment for valid H800 power measurement.

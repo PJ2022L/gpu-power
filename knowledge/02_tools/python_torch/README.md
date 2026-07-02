@@ -8,13 +8,7 @@ It does not own CUDA compiler flags, PTX/SASS inspection, Nsight metric definiti
 
 ## Required Project Rules
 
-Activate the environment before Python runs:
-
-```bash
-conda activate vla
-```
-
-Print the full command and hyperparameters into the log. Record package versions:
+Use the H800 Docker container's default `python`. Print the full command and hyperparameters into the log. Record package versions:
 
 ```bash
 python - <<'PY'

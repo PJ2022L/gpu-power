@@ -16,6 +16,7 @@ Dynamic energy is fitted from SASS counts and microbenchmark energy measurements
 - `knowledge/00-reference_essay/wattchmen/02-modeling-method.md`
 - `knowledge/00-reference_essay/wattchmen/03-microbenchmark-design.md`
 - `knowledge/00-reference_essay/wattchmen/04-measurement-protocol.md`
+- `docs/design-spec/modeling.md`
 
 ## Outputs
 
@@ -24,6 +25,7 @@ Dynamic energy is fitted from SASS counts and microbenchmark energy measurements
 ## Acceptance Criteria
 
 - Agent can explain const/static/dynamic separation.
+- Agent can explain the v1 H800 boundary for constant/static/dynamic energy.
 - Agent can explain why ancillary instructions are handled by a linear system.
 - Agent can explain why profiling and power measurement are separate runs.
 - Agent can explain the 15% operator validation target.

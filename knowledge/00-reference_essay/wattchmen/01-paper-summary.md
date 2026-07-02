@@ -82,7 +82,7 @@ For H800, this means AccelWattch is only a reference for benchmark structure and
 
 ## H800 Implication
 
-For H800, reproduce the methodology rather than the exact V100/A100/H100 tables. The operator-level project target is to predict GEMM, FlashMLA, FlashAttention v2, FlashAttention v3, and FlashAttention v4 power within 10% of measured operator power. The first milestone should be a small but complete instruction table covering:
+For H800, reproduce the methodology rather than the exact V100/A100/H100 tables. The operator-level project target is to predict GEMM, FlashMLA, and FlashAttention v3 power within 15% of measured operator power. The first milestone should be a small but complete instruction table covering:
 
 - common integer and floating-point ALU instructions,
 - branch/predicate/control-flow instructions,

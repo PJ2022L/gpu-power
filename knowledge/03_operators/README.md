@@ -4,21 +4,24 @@ This directory exists because the final project target is operator-level predict
 
 ## Project Target
 
-For five operator families on H800:
+For three operator families on H800:
 
 - predict performance,
 - measure the SASS instruction classes that construct the operators,
 - train or extend the SASS-class power model,
 - predict operator power from SASS-class counts and memory behavior,
 - compare predicted operator power with measured operator power,
-- control prediction error within 10%.
+- control prediction error within 15%.
 
 Target operator families:
 
 - `gemm/`
 - `flashmla/`
-- `flashattention_v2/`
 - `flashattention_v3/`
+
+Future extensions (not in current H800 scope):
+
+- `flashattention_v2/`
 - `flashattention_v4/`
 
 ## Operator-Level Workflow
@@ -34,7 +37,7 @@ For each operator family:
 7. Add missing SASS-class microbenchmarks.
 8. Predict total operator energy/power.
 9. Compare predicted vs measured operator power.
-10. Record whether error is <= 10%.
+10. Record whether error is <= 15%.
 
 ## Common Data Template
 

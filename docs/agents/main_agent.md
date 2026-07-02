@@ -12,7 +12,7 @@ The Main Agent owns global planning, quality gates, and phase transitions. It do
 - Decide whether to advance, repeat, or request human intervention.
 - Preserve experiment reproducibility.
 - Update `QUALITY.md` after every complete experiment loop.
-- Write the next experiment plan in `docs/exec-plans/<next>-plan.md`.
+- Write the next experiment plan in `docs/exec-plans/<xx+1>-plan.md` after analyzing `xx-exp`.
 
 ## Inputs
 

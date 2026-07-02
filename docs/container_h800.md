@@ -19,7 +19,10 @@ The container should expose:
 - Nsight Compute CLI `ncu`,
 - Nsight Systems CLI `nsys`,
 - NVML through NVIDIA driver libraries,
-- Python environment with required operator packages.
+- Python environment with required operator packages,
+- Python packages `pyyaml` and `pynvml` importable with the container's default `python`.
+
+Minimal Python package list is recorded in `requirements-h800.txt`.
 
 ## Required Startup Checks
 
@@ -39,9 +42,12 @@ The log must include:
 - `nvcc --version`,
 - `ncu --version`,
 - `nsys --version`,
+- `python -c "import yaml, pynvml"`,
 - power limit,
 - current clocks,
 - target GPU process list.
+
+The Docker image must include the Python packages listed in `requirements-h800.txt`; do not depend on activating a separate Python environment.
 
 ## Logging Rule
 

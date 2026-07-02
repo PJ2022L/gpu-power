@@ -1,5 +1,7 @@
 nvml:
-  output_root: experiments/raw/power
+  baseline_output_root: experiments/raw/baseline_power
+  microbench_output_root: experiments/raw/microbench_power
+  operator_output_root: experiments/raw/operator_power
   sample_interval_ms: 100
   prefer_total_energy_counter: true
   record_power_usage: true
@@ -17,6 +19,19 @@ run_policy:
   measurement_seconds: 180
   cooldown_seconds: 60
   repeats: 5
+
+repeatability_thresholds:
+  median_power_cv_percent_max: 2.0
+  total_energy_cv_percent_max: 2.0
+  runtime_cv_percent_max: 1.0
+  plateau_power_cv_percent_max: 1.5
+  plateau_temperature_drift_c_max: 3.0
+  start_temperature_spread_c_max: 5.0
+  sm_clock_drift_percent_max: 1.0
+  sm_clock_drift_mhz_max: 15
+  mem_clock_drift_percent_max: 1.0
+  mem_clock_drift_mhz_max: 15
+  saturation_gpu_utilization_percent_min: 95.0
 
 metadata:
   require_driver_version: true

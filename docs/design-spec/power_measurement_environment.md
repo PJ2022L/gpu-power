@@ -65,12 +65,51 @@ If any command fails, record the failure and mark the run as less controlled.
 A run is valid only if:
 
 - target GPU is isolated,
+- the sampled NVML GPU matches the GPU used by the measured command,
 - command and hyperparameters are logged,
 - clock/power/temperature metadata exist,
 - power trace reaches a steady plateau,
 - no unplanned throttling occurs,
 - energy run is not an NCU run,
 - repeated runs are within expected variance.
+
+## Repeatability Thresholds
+
+Use these v1 thresholds for microbenchmark and operator power runs. If the H800 server shows a different stable noise floor, Main Agent may revise the thresholds in an execution plan, but the reason must be recorded in `QUALITY.md`.
+
+| Metric | Default threshold | How to compute | Action if exceeded |
+| --- | --- | --- | --- |
+| Median power CV across repeats | <= 2% | `std(median_power_per_repeat) / mean(median_power_per_repeat)` | Rerun after checking isolation, clocks, power cap, and temperature. |
+| Total energy CV across repeats | <= 2% | `std(total_energy_per_repeat) / mean(total_energy_per_repeat)` | Rerun; if still high, mark benchmark/operator measurement unstable. |
+| Runtime CV across repeats | <= 1% | `std(runtime_per_repeat) / mean(runtime_per_repeat)` | Rerun; inspect synchronization, clock drift, and competing processes. |
+| Steady-state power window CV within one repeat | <= 1.5% | `std(power_samples_in_plateau) / mean(power_samples_in_plateau)` | Exclude transient window or rerun with longer warmup. |
+| Temperature drift during measured plateau | <= 3 C | `max(temp_plateau) - min(temp_plateau)` | Increase warmup/cooldown or mark run thermally unstable. |
+| Start temperature spread across repeats | <= 5 C | `max(start_temp) - min(start_temp)` | Add cooldown or fixed warmup policy before comparing repeats. |
+| SM clock drift during plateau | <= 1% or <= 15 MHz | max relative or absolute drift in `clocks.sm` | Reject unless clock locking is unavailable and drift is explicitly modeled. |
+| Memory clock drift during plateau | <= 1% or <= 15 MHz | max relative or absolute drift in `clocks.mem` | Reject unless recorded and justified. |
+| GPU utilization during active plateau | >= 95% for saturation microbenchmarks | median `utilization.gpu` during plateau | For saturation benchmarks, rerun or fix occupancy/launch shape. |
+
+For operator validation, the same thresholds apply to measured operator power. If an operator is intentionally bursty or short-running, aggregate enough iterations to form a stable plateau before applying these thresholds.
+
+The utilization threshold is only a failure criterion for runs marked as saturation runs. Idle baselines and active-no-op baselines should record utilization but should not use this threshold as a pass/fail gate.
+
+## Repeatability Report
+
+Every Phase 2 microbenchmark report and Phase 4 validation report must include:
+
+- number of repeats,
+- median power per repeat,
+- total energy per repeat,
+- runtime per repeat,
+- power CV,
+- energy CV,
+- runtime CV,
+- plateau temperature range,
+- start temperature spread,
+- SM/memory clock drift,
+- pass/fail decision against the thresholds above.
+
+The base implementation for these fields is `src/power/nvml_sampler.py`, which writes `power_trace.csv`, `summary.yaml`, and `repeatability.yaml` for each measurement directory.
 
 ## Invalid Run Criteria
 
@@ -82,3 +121,4 @@ Reject or quarantine a run if:
 - thermal or power throttling occurs,
 - NCU instrumentation was used for the power run,
 - logs do not include command, hyperparameters, and GPU metadata.
+- repeatability thresholds are exceeded after one rerun, unless the run is explicitly marked exploratory.

@@ -11,7 +11,7 @@ GEMM is the baseline dense linear algebra operator for H800 performance and powe
 - Implementations: cuBLAS, CUTLASS, local kernels.
 - Dominant SASS classes: WGMMA/HGMMA, LDSM, shared memory load/store, global load/store, async copy, barriers.
 - Memory behavior: global-to-shared staging, shared-memory bank conflicts, L2 reuse, HBM traffic.
-- Validation target: predicted power within 10% of measured GEMM power.
+- Validation target: predicted power within 15% of measured GEMM power.
 
 ## Initial Questions
 

@@ -35,7 +35,7 @@ Request human intervention when:
 
 - `experiments/reports/phase5_iteration_plan.md`
 - `QUALITY.md` updated by Main Agent after the complete experiment loop.
-- `docs/exec-plans/<next>-plan.md` written by Main Agent.
+- `docs/exec-plans/<xx+1>-plan.md` written by Main Agent after analyzing `xx-exp`.
 
 ## Acceptance Criteria
 
@@ -51,4 +51,4 @@ The iteration plan must specify whether to:
 
 At the end of Phase 5, or immediately after Phase 4 if validation is accepted, Main Agent must create or update the corresponding `xx-exp` entry in `QUALITY.md`.
 
-Main Agent must then write the next experiment plan as `docs/exec-plans/<next>-plan.md`, unless the decision is to stop and request human intervention.
+Main Agent must then write the next experiment plan as `docs/exec-plans/<xx+1>-plan.md`, unless the decision is to stop and request human intervention.

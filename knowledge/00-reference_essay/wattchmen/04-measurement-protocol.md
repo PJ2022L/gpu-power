@@ -218,7 +218,7 @@ notes=
 
 User-specific rule:
 
-- If Python scripts are used, start with `conda activate vla`.
+- Python scripts run with the H800 Docker container's default `python`.
 - Experimental shell scripts must print the run command and hyperparameters into the log for reproducibility.
 
 ## Run Order

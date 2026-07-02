@@ -10,7 +10,7 @@
 
 ## Scope
 
-The reproduction target is H800 SXM/HGX first. PCIe differences are secondary.
+The reproduction target is H800 SXM/HGX first. PCIe differences are lower priority.
 
 Important rule:
 

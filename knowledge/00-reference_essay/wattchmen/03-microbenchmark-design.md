@@ -14,7 +14,7 @@ Each microbenchmark should maximize the count of a target SASS opcode or target 
 
 The benchmark suite, not a single benchmark, is the unit of model construction.
 
-For this project, the benchmark suite should be operator-driven: profile GEMM, FlashMLA, FlashAttention v2/v3/v4 first, identify their dominant SASS instruction classes, then prioritize microbenchmarks for those classes.
+For this project, the benchmark suite should be operator-driven: profile GEMM, FlashMLA, and FlashAttention v3 first, identify their dominant SASS instruction classes, then prioritize microbenchmarks for those classes.
 
 ## Required Output From Every Microbenchmark
 

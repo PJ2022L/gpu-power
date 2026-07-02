@@ -4,6 +4,8 @@
 
 Profile GEMM, FlashMLA, and FlashAttention v3 on H800 and identify the SASS instruction classes that dominate execution and likely power.
 
+This agent owns Phase 1 profiling only. It does not collect operator measured-power ground truth for validation.
+
 ## Inputs
 
 - `configs/operators/gemm.yaml`
@@ -27,4 +29,5 @@ Write under `experiments/processed/operator_sass/` and `experiments/reports/phas
 - Profile actual operator binaries used by the validation run.
 - Keep GEMM, FlashMLA, and FlashAttention v3 reports separate.
 - Record exact implementation path, commit, entrypoint, shape, dtype, and command.
+- Do not use NCU/Nsys-instrumented runtime or exploratory power as validation ground truth.
 - Do not decide microbenchmark details; pass required SASS classes to Microbench Agent.

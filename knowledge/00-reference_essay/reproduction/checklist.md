@@ -19,7 +19,7 @@
 
 ## Environment Rules
 
-- If using Python, run `conda activate vla`.
+- Use the H800 Docker container's default `python`; do not require an external environment activation step.
 - Shell scripts must print commands and hyperparameters to log files.
 - Plotting scripts must be placed under the corresponding figure directory.
 - Do not run measurement scripts without logging GPU ID, clocks, power limit, and exact command.

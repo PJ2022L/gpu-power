@@ -10,3 +10,10 @@ A x = b
 ```
 
 Use non-negative least squares by default.
+
+The first implementation must follow `docs/design-spec/modeling.md`:
+
+- constant power from idle baseline,
+- static power from full-SM active-no-op baseline minus idle,
+- dynamic energy as measured energy after subtracting constant/static,
+- no occupancy/static scaling unless a later execution plan introduces it.
