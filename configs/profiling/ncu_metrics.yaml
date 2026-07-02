@@ -1,0 +1,28 @@
+ncu:
+  output_root: experiments/raw/operator_profiles/ncu
+  target_processes: all
+  sass_metrics:
+    preferred:
+      - sass__inst_executed_per_opcode_with_modifier_all
+    fallbacks:
+      - sass__inst_executed_per_opcode_with_modifier_selective
+      - sass__inst_executed_per_opcode
+      - sass__inst_executed_per_opcode_category
+  memory_instruction_metrics:
+    - sass__inst_executed_global_loads
+    - sass__inst_executed_global_stores
+    - sass__inst_executed_shared_loads
+    - sass__inst_executed_shared_stores
+  cache_metric_policy:
+    query_before_run: true
+    l1_prefix: l1tex__
+    l2_prefix: lts__
+    dram_prefix: dram__
+  notes: "Confirm exact metric availability on H800 with ncu --query-metrics."
+
+nsys:
+  output_root: experiments/raw/operator_profiles/nsys
+  trace:
+    - cuda
+    - nvtx
+    - osrt

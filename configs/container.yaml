@@ -1,0 +1,20 @@
+container:
+  image: operatorsforge:h800-v1.0
+  name: l2_mla_study
+  target_gpu: 0
+  workdir: /workspace/gpu-power
+  notes: "Experiments must run on H800 server, not on the current non-H800 machine."
+
+logging:
+  root: experiments/logs
+  require_command_echo: true
+  require_hyperparameters: true
+  require_gpu_metadata: true
+
+environment:
+  python_env_command: "conda activate vla"
+  required_tools:
+    - nvidia-smi
+    - nvcc
+    - ncu
+    - nsys

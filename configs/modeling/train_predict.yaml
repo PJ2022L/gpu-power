@@ -1,0 +1,26 @@
+modeling:
+  target_error_percent: 15.0
+  decomposition:
+    constant_energy: true
+    static_energy: true
+    dynamic_energy: true
+  solver:
+    type: non_negative_least_squares
+    enforce_non_negative: true
+    save_matrix: true
+    save_residuals: true
+  coverage:
+    keep_raw_opcodes: true
+    allow_grouping: true
+    allow_scaling: true
+    allow_bucketing: true
+    report_unknown_fraction: true
+
+inputs:
+  microbench_processed_root: experiments/processed/microbench
+  operator_sass_root: experiments/processed/operator_sass
+  operator_power_root: experiments/raw/operator_power
+
+outputs:
+  model_root: experiments/processed/modeling
+  reports_root: experiments/reports

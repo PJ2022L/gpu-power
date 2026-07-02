@@ -1,0 +1,34 @@
+operator:
+  name: flashmla
+  enabled: true
+  implementation_path: TBD
+  commit: TBD
+  entrypoint: TBD
+  runner_type: python_or_cuda_cpp
+
+shapes:
+  - name: decode_smoke_placeholder
+    batch: TBD
+    num_heads: TBD
+    head_dim: TBD
+    kv_seq_len: TBD
+    dtype: bf16
+    warmup: 20
+    repeat: 100
+  - name: prefill_placeholder
+    batch: TBD
+    num_heads: TBD
+    head_dim: TBD
+    q_seq_len: TBD
+    kv_seq_len: TBD
+    dtype: bf16
+    warmup: 20
+    repeat: 100
+
+profiling:
+  nsys: true
+  ncu: true
+  collect_sass_topk: 50
+
+power:
+  measure_operator_energy: true

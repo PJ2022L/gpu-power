@@ -1,0 +1,33 @@
+operator:
+  name: gemm
+  enabled: true
+  implementation_path: TBD
+  commit: TBD
+  entrypoint: TBD
+  runner_type: python_or_cuda_cpp
+
+shapes:
+  - name: smoke_fp16_square
+    m: 4096
+    n: 4096
+    k: 4096
+    dtype: fp16
+    layout: row_col
+    warmup: 20
+    repeat: 100
+  - name: transformer_bf16_placeholder
+    m: TBD
+    n: TBD
+    k: TBD
+    dtype: bf16
+    layout: TBD
+    warmup: 20
+    repeat: 100
+
+profiling:
+  nsys: true
+  ncu: true
+  collect_sass_topk: 50
+
+power:
+  measure_operator_energy: true

@@ -1,0 +1,27 @@
+nvml:
+  output_root: experiments/raw/power
+  sample_interval_ms: 100
+  prefer_total_energy_counter: true
+  record_power_usage: true
+  record_utilization: true
+  record_temperature: true
+  record_clocks: true
+
+run_policy:
+  exclusive_gpu_required: true
+  persistence_mode: enable_if_permitted
+  lock_sm_clock_mhz: TBD
+  lock_mem_clock_mhz: TBD
+  power_limit_w: TBD
+  warmup_seconds: 30
+  measurement_seconds: 180
+  cooldown_seconds: 60
+  repeats: 5
+
+metadata:
+  require_driver_version: true
+  require_cuda_version: true
+  require_ncu_version: true
+  require_gpu_uuid: true
+  require_command: true
+  require_hyperparameters: true

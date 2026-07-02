@@ -1,0 +1,37 @@
+operator:
+  name: flashattention_v3
+  enabled: true
+  implementation_path: TBD
+  commit: TBD
+  entrypoint: TBD
+  runner_type: python_or_cuda_cpp
+
+shapes:
+  - name: forward_smoke_bf16
+    batch: 4
+    num_heads: 32
+    seq_len_q: 2048
+    seq_len_kv: 2048
+    head_dim: 128
+    causal: true
+    dtype: bf16
+    warmup: 20
+    repeat: 100
+  - name: hopper_target_placeholder
+    batch: TBD
+    num_heads: TBD
+    seq_len_q: TBD
+    seq_len_kv: TBD
+    head_dim: TBD
+    causal: TBD
+    dtype: TBD
+    warmup: 20
+    repeat: 100
+
+profiling:
+  nsys: true
+  ncu: true
+  collect_sass_topk: 50
+
+power:
+  measure_operator_energy: true
