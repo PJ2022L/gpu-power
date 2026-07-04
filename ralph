@@ -1,0 +1,62 @@
+2. 安装 Ralph Orchestrator
+
+官方 README 推荐 npm：
+
+npm install -g @ralph-orchestrator/ralph-cli
+
+安装后检查：
+
+ralph --help
+ralph --version
+
+官方 FAQ 里也写了：多数用户推荐 npm 安装，也可以用 Cargo 或 GitHub Releases installer。
+
+3. 在项目里初始化
+
+进入你的工程目录：
+
+cd your-project
+git status
+
+初始化 Ralph：
+
+ralph init --backend claude
+
+如果你想用 Codex：
+
+ralph init --backend codex
+4. 生成任务规划
+
+例如你要让 agent 帮你做 GPU profiling harness：
+
+ralph plan "Build a GPU profiling harness for GEMM and FlashMLA on H800 and B200"
+
+官方 Quick Start 示例是：
+
+ralph init --backend claude
+ralph plan "Add user authentication with JWT"
+ralph run -p "Implement the feature in .ralph/specs/user-authentication/"
+
+也就是说，ralph plan 会先生成规格文档，然后 ralph run 根据规格文档持续迭代实现。
+
+5. 运行 Ralph
+
+假设它生成了类似这个目录：
+
+.ralph/specs/gpu-profiling-harness/
+├── requirements.md
+├── design.md
+└── implementation-plan.md
+
+运行：
+
+ralph run -p "Implement the GPU profiling harness in .ralph/specs/gpu-profiling-harness/"
+
+Ralph 会循环调用后端 agent，直到任务完成或达到限制。它的核心能力包括多 backend、hat system、backpressure gates、memory 和 task tracking。
+
+6. 开 Web Dashboard
+ralph web
+
+README 里说明，ralph web 会启动 Rust RPC API 和前端 Dashboard；也可以自定义端口：
+
+ralph web --backend-port 4000 --frontend-port 8080
