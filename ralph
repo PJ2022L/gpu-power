@@ -60,3 +60,9 @@ ralph web
 README 里说明，ralph web 会启动 Rust RPC API 和前端 Dashboard；也可以自定义端口：
 
 ralph web --backend-port 4000 --frontend-port 8080
+
+mkdir -p ~/.claude/skills/drawio
+
+curl -L \
+  https://raw.githubusercontent.com/jgraph/drawio-mcp/main/skill-cli/drawio/SKILL.md \
+  -o ~/.claude/skills/drawio/SKILL.md
