@@ -4,5 +4,8 @@ SASS-class microbenchmarks belong here when implementation starts.
 
 Design rules are documented in:
 
-- `knowledge/00-reference_essay/wattchmen/03-microbenchmark-design.md`
-- `docs/phases/phase2_microbenchmarks.md`
+- `.agents/knowledge/MICROBENCHMARK_CATALOG.md`
+- `harness/phases/06_microbench_plan.md`
+- `harness/phases/07_microbench_build.md`
+- `harness/phases/08_microbench_power_measure.md`
+- `harness/phases/09_sass_count_and_ncu_extract.md`

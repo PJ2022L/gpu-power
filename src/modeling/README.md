@@ -11,7 +11,9 @@ A x = b
 
 Use non-negative least squares by default.
 
-The first implementation must follow `docs/design-spec/modeling.md`:
+Do not accept negative dynamic RHS rows, negative fitted SASS coefficients, or negative predicted dynamic/total power as normal model outputs. Quarantine them with diagnostics or reject the fit.
+
+The first implementation must follow `harness/design-spec/modeling.md`:
 
 - constant power from idle baseline,
 - static power from full-SM active-no-op baseline minus idle,

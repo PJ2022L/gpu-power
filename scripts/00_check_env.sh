@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 set -euo pipefail
 
-CONFIG="${1:-configs/container.yaml}"
+POWER_POLICY="${1:-configs/power/nvml_policy.yaml}"
 LOG_DIR="experiments/logs"
 mkdir -p "${LOG_DIR}"
 LOG_FILE="${LOG_DIR}/00_check_env_$(date +%Y%m%d_%H%M%S).log"
@@ -9,15 +9,13 @@ printf -v ORIGINAL_COMMAND '%q ' "$0" "$@"
 
 {
   echo "stage=00_check_env"
-  echo "config=${CONFIG}"
+  echo "power_policy=${POWER_POLICY}"
   echo "command=${ORIGINAL_COMMAND}"
-  echo "expected_container_image=operatorsforge:h800-v1.0"
-  echo "expected_container_name=l2_mla_study"
   echo "date_iso=$(date -Is)"
   echo "hostname=$(hostname)"
   echo "user=$(id -un)"
   echo "pwd=$(pwd)"
-  echo "container_name=${HOSTNAME:-unknown}"
+  echo "runtime_session=${HOSTNAME:-unknown}"
   echo "python=$(command -v python || true)"
   echo "python_version=$(python --version 2>&1 || true)"
   echo "git_commit=$(git rev-parse HEAD 2>/dev/null || true)"

@@ -80,7 +80,7 @@ def load_yaml(path: Optional[Path]) -> Dict[str, Any]:
         import yaml
     except ImportError as exc:
         raise SystemExit(
-            "PyYAML is required when --config is used. Install pyyaml in the H800 Docker image."
+            "PyYAML is required when --config is used. Install pyyaml in the H800 runtime environment before measurement."
         ) from exc
 
     with path.open("r", encoding="utf-8") as f:
@@ -233,7 +233,7 @@ class NvmlDevice:
         except ImportError as exc:
             raise SystemExit(
                 "Missing NVML Python binding `pynvml`. Install `nvidia-ml-py` "
-                "inside the H800 container, then rerun."
+                "in the H800 runtime environment before measurement."
             ) from exc
 
         self.nvml = nvml

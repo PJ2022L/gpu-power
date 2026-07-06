@@ -4,11 +4,11 @@ NVML power and energy collection code belongs here.
 
 Measurement policy is configured in `configs/power/nvml_policy.yaml`.
 
-Keep Phase 2 and Phase 4 power collection separate:
+Keep baseline, microbenchmark, and operator validation power collection separate:
 
-- Baseline traces go under `experiments/raw/baseline_power/`.
-- Phase 2 microbenchmark traces go under `experiments/raw/microbench_power/`.
-- Phase 4 operator ground truth goes under `experiments/raw/operator_power/`.
+- Phase 02 baseline traces go under `experiments/static_power/raw/`.
+- Phase 08 microbenchmark traces go under `experiments/raw/microbench_power/`.
+- Phase 11 operator ground truth goes under `experiments/raw/operator_power/`.
 
 Do not collect validation ground truth from NCU/Nsys-instrumented runs.
 
@@ -16,13 +16,13 @@ Do not collect validation ground truth from NCU/Nsys-instrumented runs.
 
 Use `src/power/nvml_sampler.py` as the single base sampler for power data.
 
-Runtime dependency on the H800 container:
+Runtime dependency:
 
 ```bash
 python -c "import pynvml"
 ```
 
-If `pynvml` is missing, install the Python binding package `nvidia-ml-py` in the container.
+If `pynvml` is missing, record the missing dependency in the phase report. Do not change the runtime package state during a measurement run.
 
 ### Wrap A Command
 
@@ -53,7 +53,7 @@ Use this for idle or active-no-op baseline windows:
 python src/power/nvml_sampler.py \
   --config configs/power/nvml_policy.yaml \
   --gpu-id 0 \
-  --output-dir experiments/raw/baseline_power/idle_001 \
+  --output-dir experiments/static_power/raw/idle_001 \
   --label idle_baseline \
   --duration-sec 60 \
   --repeat 5

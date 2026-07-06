@@ -24,10 +24,13 @@ Every experiment command must write a log under `experiments/logs/` with:
 
 ## Required Raw Subdirectories
 
-- `raw/operator_profiles/`: Phase 1 NCU/Nsys operator profiling artifacts.
-- `raw/baseline_power/`: idle and active-no-op baseline power traces for `P_const` and `P_static`.
-- `raw/microbench_power/`: Phase 2 non-profiled microbenchmark power traces.
-- `raw/operator_power/`: Phase 4 non-profiled operator power ground truth.
+- `raw/operator_profiles/`: Phase 03-05 NCU/Nsys operator profiling artifacts.
+- `raw/microbench_power/`: Phase 08 non-profiled microbenchmark power traces.
+- `raw/operator_power/`: Phase 11 non-profiled operator power ground truth.
+- `static_power/raw/`: Phase 02 static + constant baseline traces.
+- `dynamic_power/iter_<N>/`: dynamic power iteration artifacts.
+- `e2e_testset/raw/`: E2E operator power ground truth and profiler artifacts.
+- `environment/<timestamp>/`: H800 environment evidence packages.
 
 For `raw/operator_power/`, use:
 
@@ -44,9 +47,24 @@ The same file set is used for `raw/microbench_power/<bench_id>/`.
 Baseline runs use:
 
 ```text
-experiments/raw/baseline_power/<baseline_id>/
+experiments/static_power/raw/<baseline_id>/
   metadata.yaml
   power_trace.csv
   summary.yaml
   repeatability.yaml
+```
+
+Dynamic power iterations use:
+
+```text
+experiments/dynamic_power/iter_<N>/
+  raw/microbench_power/
+  raw/sass/
+  raw/ncu/
+  processed/
+  sass_counts.csv
+  ncu_metrics.csv
+  model_coefficients.csv
+  fit_report.md
+  pred_vs_measured.csv
 ```

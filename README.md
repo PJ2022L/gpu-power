@@ -12,12 +12,7 @@ Target validation error is about 15% or lower against measured H800 operator pow
 
 ## Execution Environment
 
-Experiments are not intended to run on the current server. They should run on an H800 server inside:
-
-```text
-image: operatorsforge:h800-v1.0
-container name: l2_mla_study
-```
+Experiments are not intended to run on the current server. They should run only from the already-provided H800 runtime session.
 
 The current repository provides:
 
@@ -28,11 +23,11 @@ The current repository provides:
 - script placeholders,
 - output directory conventions.
 
-The minimal power sampler is `src/power/nvml_sampler.py`. It uses the H800 Docker container's default `python` and requires the `pynvml` Python binding from `nvidia-ml-py`. Minimal Python dependencies are listed in `requirements-h800.txt`.
+The minimal power sampler is `src/power/nvml_sampler.py`. It uses the runtime session's default `python` and requires the `pynvml` Python binding from `nvidia-ml-py`. Minimal Python dependencies are listed in `requirements-h800.txt`.
 
-## Harness Philosophy
+## Harness Directory
 
-Harness is not a directory in this project. It is the experiment management method:
+`harness/` stores the experiment management documents. The harness idea is the operating method:
 
 - every stage has explicit inputs and outputs,
 - every agent has a bounded responsibility,
@@ -42,15 +37,17 @@ Harness is not a directory in this project. It is the experiment management meth
 
 ## First Reading Path
 
-1. `knowledge/README.md`
+1. `.agents/knowledge/INDEX.md`
 2. `ARCHITECTURE.md`
-3. `docs/roadmap.md`
-4. `docs/agents/main_agent.md`
-5. `docs/agents/handoff_contracts.md`
-6. `docs/phases/phase0_modeling.md`
-7. `docs/design-spec/power_measurement_environment.md`
-8. `configs/container.yaml`
-9. `QUALITY.md`
+3. `harness/roadmap.md`
+4. `harness/agents/main_agent.md`
+5. `harness/agents/handoff_contracts.md`
+6. `.agents/knowledge/METRICS.md`
+7. `.agents/knowledge/H800_ENVIRONMENT_PROTOCOL.md`
+8. `harness/phases/00_route_and_environment.md`
+9. `harness/phases/01_metric_and_model_boundary.md`
+10. `harness/design-spec/power_measurement_environment.md`
+11. `QUALITY.md`
 
 ## Stage Scripts
 
@@ -58,6 +55,7 @@ The stage scripts are placeholders for the H800 agent to complete:
 
 ```text
 scripts/00_check_env.sh
+scripts/00_collect_h800_environment.sh
 scripts/01_profile_operators.sh
 scripts/02_plan_microbenchmarks.sh
 scripts/03_run_microbenchmarks.sh
@@ -65,12 +63,12 @@ scripts/04_fit_model.sh
 scripts/05_collect_operator_power.sh
 scripts/06_predict_operators.sh
 scripts/07_validate_error.sh
-scripts/collect_baselines.sh
+scripts/collect_static_power_baselines.sh
 ```
 
 Each script is intentionally conservative: it prints what it would do, writes a log, and points to the expected next artifact.
 
-`collect_baselines.sh` is a support script used before Phase 3 fitting to collect idle and active-no-op power baselines for `P_const` and `P_static`; it is not a separate numbered phase.
+`collect_static_power_baselines.sh` is the baseline collection entrypoint for Phase 02. It collects idle and active/no-op states for `P_const` and `P_static` under `experiments/static_power/raw/`.
 
 ## Quality Tracking
 
@@ -82,7 +80,7 @@ micro-benchmark -> calibration/model fitting -> operator test
 
 Each completed loop gets an ID such as `01-exp`. The Main Agent updates the ledger with microbenchmarks, model adjustments, problems, next guidance, and current error.
 
-Plan numbering is fixed: `01-plan.md -> 01-exp -> 02-plan.md`. `xx-plan.md` is the plan that produces `xx-exp`; after analyzing `xx-exp`, Main Agent writes `docs/exec-plans/<xx+1>-plan.md`.
+Plan numbering is fixed: `01-plan.md -> 01-exp -> 02-plan.md`. `xx-plan.md` is the plan that produces `xx-exp`; after analyzing `xx-exp`, Main Agent writes `harness/exec-plans/<xx+1>-plan.md`.
 
 ## Output Layout
 

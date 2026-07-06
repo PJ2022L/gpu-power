@@ -1,5 +1,5 @@
 nvml:
-  baseline_output_root: experiments/raw/baseline_power
+  baseline_output_root: experiments/static_power/raw
   microbench_output_root: experiments/raw/microbench_power
   operator_output_root: experiments/raw/operator_power
   sample_interval_ms: 100

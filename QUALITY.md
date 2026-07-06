@@ -32,7 +32,7 @@ Plan and experiment numbering is one-to-one:
 
 | Exp ID | Date | Micro-benchmarks | Model Adjustments | Operator Test Set | Mean Error | Max Error | Decision | Next Guidance |
 | --- | --- | --- | --- | --- | --- | --- | --- | --- |
-| 00-exp | TBD | None | None | None | N/A | N/A | baseline skeleton | Run Phase 1 operator profiling on H800 |
+| 00-exp | TBD | None | None | None | N/A | N/A | baseline skeleton | Run Phase 00-02 setup/baseline, then Phase 03-05 operator profiling on H800 |
 
 ## Experiment Detail Template
 
@@ -44,14 +44,14 @@ Copy this section for every completed experiment.
 | --- | --- |
 | Date | YYYY-MM-DD |
 | Agent | TBD |
-| Container | `operatorsforge:h800-v1.0` / `l2_mla_study` |
+| Runtime session | TBD |
 | Git commit | TBD |
 | H800 GPU UUID | TBD |
 | Driver/CUDA/NCU versions | TBD |
 | Configs | TBD |
 | Reports | TBD |
-| Plan that produced this experiment | `docs/exec-plans/xx-plan.md` |
-| Next plan | `docs/exec-plans/<xx+1>-plan.md` |
+| Plan that produced this experiment | `harness/exec-plans/xx-plan.md` |
+| Next plan | `harness/exec-plans/<xx+1>-plan.md` |
 
 #### 1. Micro-benchmarks
 
@@ -104,7 +104,7 @@ Use this table for quick ablation or component-removal decisions.
 
 - An experiment is only valid if it includes microbenchmark results, calibration/model fitting, and operator testing.
 - If an experiment changes only one stage, record it as a partial note in the relevant phase report, not as a new `xx-exp`.
-- The Main Agent updates this file after Phase 4 or Phase 5.
+- The Main Agent updates this file after Phase 12 or Phase 13.
 - Main Agent uses this file to decide whether the repository is improving.
 - If mean error improves but max operator error gets worse, mark the decision as `mixed`.
 - If error improves by removing a component, record the component in the simplified log and justify whether to keep it removed.
@@ -114,7 +114,7 @@ Use this table for quick ablation or component-removal decisions.
 After analyzing a completed `xx-exp`, Main Agent must write the next plan to:
 
 ```text
-docs/exec-plans/<xx+1>-plan.md
+harness/exec-plans/<xx+1>-plan.md
 ```
 
 For example, `01-plan.md` produces `01-exp`; after `01-exp` is analyzed, Main Agent writes `02-plan.md`.

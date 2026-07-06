@@ -4,7 +4,7 @@ modeling:
     constant_energy: true
     static_energy: true
     dynamic_energy: true
-    v1_boundary_doc: docs/design-spec/modeling.md
+    v1_boundary_doc: harness/design-spec/modeling.md
     constant_power_source: idle_baseline
     static_power_source: full_sm_active_noop_minus_idle
     static_activity_scaling: none
@@ -12,6 +12,8 @@ modeling:
   solver:
     type: non_negative_least_squares
     enforce_non_negative: true
+    reject_negative_dynamic_rhs: true
+    reject_negative_predictions: true
     save_matrix: true
     save_residuals: true
   coverage:
@@ -22,7 +24,8 @@ modeling:
     report_unknown_fraction: true
 
 inputs:
-  baseline_power_root: experiments/raw/baseline_power
+  baseline_power_root: experiments/static_power/raw
+  static_power_processed_root: experiments/static_power/processed
   microbench_processed_root: experiments/processed/microbench
   operator_sass_root: experiments/processed/operator_sass
   operator_power_root: experiments/raw/operator_power
